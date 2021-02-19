@@ -1,0 +1,9 @@
+#cd to temp_scriptdemo2015
+nano hwscript.sh
+#copy and paste job commands, edits to job command, job output, and job error
+cd /home/cfc85413/temp_scriptdemo2015
+head -n 11 HW22-2-21 > HW22-2-21_first11.txt 
+ctrl o
+ctrl x
+sbatch hwscript.sh 
+cat HW22-2-21_first11.txt
