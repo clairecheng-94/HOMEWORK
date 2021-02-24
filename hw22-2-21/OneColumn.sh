@@ -15,3 +15,7 @@ cd /home/cfc85413/temp_scriptdemo2015
 
 
 cut -c 1 HW22-2-21 > HW22-2-21-2.txt
+
+#^O to save and ^X to exit 
+sbatch <filename> 
+nano HW22-2-21.txt 
