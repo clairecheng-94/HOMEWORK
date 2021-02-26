@@ -1,3 +1,6 @@
+##WITHIN LINUX
+##LOAD R
+
 matrix(data=rnorm(1:100), nrow=20, ncol=5)
 x<-matrix(data=rnorm(1:100), nrow=20, ncol=5)
 X<-as.data.frame(x)
@@ -7,3 +10,4 @@ write.table(x=x, file=outfile, quote=FALSE, row.names=FALSE)
 
 
 
+##THIS CREATES A 10X10 DATA TABLE WITHIN R 
