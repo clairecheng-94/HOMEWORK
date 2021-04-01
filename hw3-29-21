@@ -1,0 +1,10 @@
+library(tidyverse)
+
+
+bd<-read.table("/scratch/cfc85413/UKB-pheno/
+ukb34137.tab", header=TRUE, sep="\t")
+
+png(filenmae=".png", type="cairo")
+hist(bd$f.874.0.0)
+dev.off()
+
