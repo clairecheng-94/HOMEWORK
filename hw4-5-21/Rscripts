@@ -1,0 +1,47 @@
+#FOR VITAMIN D VS GENDER GRAPH
+ibrary(tidyverse)
+
+#Gender data
+
+n<-100000
+gender<-sample(c(0,1), replace=TRUE, size=n) 
+
+#Vitamin D data 
+VitaD<-rnorm(100000, mean=48.5803, sd=21.1431)
+
+#Combining them all together 
+IID<-(1:n)
+plotatable1<-cbind(IID, gender, VitaD)
+plotatable1<-as_tibble(plotatable1)
+plotatable1
+plotatable1<-data.frame(plotatable1, stringsAsFactors = TRUE)
+
+
+#creating the plot w/ aesthetics 
+ggplot(bd, aes(gender, VitaD))+(geom_point(alpha=0.1, color='blue'))+
+  ggtitle("Vitamin D vs sex in UKB chort")+
+  xlab("Parricpant's gender")+ ylab("Vitamin D (nmol/L")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme_bw()
+
+######################################################################
+
+#FOR PHOSPHATE VS CREATININE GRAPH 
+library(tidyverse)
+
+
+phosphate<-rnorm(100000, mean=1.16173, sd= 0.161479)
+
+creatinine<-rnorm(100000, mean= 72.4066,18.5237)
+
+IID<-seq(1:100000)
+plottable2<-cbind(IID, phosphate, creatinine)
+plottable2<-as_tibble(plottable2)
+plottable2
+
+ggplot(bd, aes(phosphate, creatintine))+(geom_point(alpha=0.1, color='red'))+
+  ggtitle("phosphate vs creatinine in UKB chort")+
+  xlab("Parricpant's phosphate level (mmol/L")+ ylab("creatinine (umol/L")+
+  theme_bw()+
+  theme(plot.title = element_text(hjust=0.5))
+
