@@ -4,6 +4,11 @@ library(tidyverse)
 
 bd<-read.table("/scratch/cfc85413/UKB-pheno/ukb34137.tab", header=TRUE, sep="\t")
 
+bd$f.31.0.0[bd$f.31.0.0==0]<-"Male"
+bd$f.31.0.0[bd$f.31.0.0==1]<-"Female"
+bd$f.31.0.0<-as.factor(bd$f.31.0.0)
+
+
 png(filename="Gender vs Vitamin D.png", type="cairo")
 > barplot(bd, aes(f.31.0.0, f.30890.0.0))+(geom_point(alpha=0.1, color='blue'))+
 +   ggtitle("Vitamin D vs sex in UKB chort")+
