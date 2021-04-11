@@ -18,9 +18,9 @@ plotatable1<-data.frame(plotatable1, stringsAsFactors = TRUE)
 
 
 #creating the plot w/ aesthetics 
-ggplot(bd, aes(gender, VitaD))+(geom_point(alpha=0.1, color='blue'))+
-  ggtitle("Vitamin D vs sex in UKB chort")+
-  xlab("Parricpant's gender")+ ylab("Vitamin D (nmol/L")+
+ggplot(plottable2, aes(gender, VitaD))+(geom_point(alpha=0.1, color='blue'))+
+  ggtitle("Vitamin D vs sex in UKB cohort")+
+  xlab("Female   Male")+ ylab("Vitamin D (nmol/L)")+
   theme(plot.title = element_text(hjust=0.5))+
   theme_bw()
 
@@ -40,8 +40,8 @@ plottable2<-as_tibble(plottable2)
 plottable2
 
 ggplot(bd, aes(phosphate, creatintine))+(geom_point(alpha=0.1, color='red'))+
-  ggtitle("phosphate vs creatinine in UKB chort")+
-  xlab("Parricpant's phosphate level (mmol/L")+ ylab("creatinine (umol/L")+
+  ggtitle("phosphate vs creatinine in UKB cohort")+
+  xlab("Particpant's phosphate level (mmol/L)")+ ylab("creatinine (umol/L)")+
   theme_bw()+
   theme(plot.title = element_text(hjust=0.5))
 
