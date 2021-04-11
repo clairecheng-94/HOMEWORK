@@ -1,28 +1,33 @@
 #FOR VITAMIN D VS GENDER GRAPH
-ibrary(tidyverse)
+library(tidyverse)
 
 #Gender data
-
 n<-100000
-gender<-sample(c(0,1), replace=TRUE, size=n) 
+sex<-rbinom(100000, 1, 0.5440372)
 
-#Vitamin D data 
+
+#Vitamin D data
 VitaD<-rnorm(100000, mean=48.5803, sd=21.1431)
 
-#Combining them all together 
+#Combining them all together
 IID<-(1:n)
-plotatable1<-cbind(IID, gender, VitaD)
-plotatable1<-as_tibble(plotatable1)
+plotatable1<-cbind(IID, sex, VitaD)
+
 plotatable1
 plotatable1<-data.frame(plotatable1, stringsAsFactors = TRUE)
+plotatable1<-as_tibble(plotatable1)
 
+plotatable1$sex[plotatable1$sex==0]<-"Male"
+plotatable1$sex[plotatable1$sex==1]<-"Female"
+plotatable1$sex<-as.factor(plotatable1$sex)
 
-#creating the plot w/ aesthetics 
-ggplot(plottable2, aes(gender, VitaD))+(geom_point(alpha=0.1, color='blue'))+
+#creating the plot w/ aesthetics
+ggplot(bd, aes(f.31.0.0, f.30890.0.0))+(geom_point(alpha=0.1, color='blue'))+
   ggtitle("Vitamin D vs sex in UKB cohort")+
-  xlab("Female   Male")+ ylab("Vitamin D (nmol/L)")+
+  xlab("Sex")+ ylab("Vitamin D (nmol/L)")+
   theme(plot.title = element_text(hjust=0.5))+
   theme_bw()
+
 
 ######################################################################
 
