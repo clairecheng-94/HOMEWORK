@@ -45,3 +45,7 @@ veg<-as_tibble(veg)
 #CHANGE DATA NAME TO JOIN NEW AND VEG
 colnames(veg)[colnames(veg)== "IID"]<-"f.eid"
 data<-left_join(new, veg, by=intersect(colnames(new),colnames(veg)))
+
+#FOR LINEAR REGRESSION 
+lm(data$f.30890.0.0~data$f.21003.0.0,data$f.31.0.0,data$f.21001.0.0,data$Consistent_Self_Reported_Vegetarian_across_all_24hr)
+
