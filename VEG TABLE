@@ -1,0 +1,47 @@
+library(tidyverse)
+
+####################################################################################
+
+#Table 1
+
+ukbqc<-read.delim("/scratch/cfc85413/UKB-pheno/UKB34137_QC_and_24HR.txt")
+ukbqc<-as_tibble(ukbqc)
+ukbqc
+
+
+#Table 2
+UK37<-read.table("/scratch/cfc85413/UKB-pheno/ukb37330.tab",header=TRUE, sep="\t")
+UK37<-as_tibble(UK37)
+UK37
+
+#To Join
+join<-left_join(ukbqc, UK37, by=intersect(colnames(ukbqc),colnames(UK37)))
+join
+
+#identical(ncol(join),(ncol(UK37)+ncol(ukbqc)-1))
+
+#To Select Columns
+new<-join%>%select(f.eid,f.31.0.0, f.21001.0.0, f.30890.0.0)
+new
+
+#CONVERT TO A CHARACTER THEN SET MALE AND FEMALE TO 1 & 2
+new$f.31.0.0<-as.character(new$f.31.0.0)
+new
+
+new$f.31.0.0[new$f.31.0.0=="Male"]<-"1"
+new
+
+new$f.31.0.0[new$f.31.0.0=="Female"]<-"0"
+new
+
+#CONVERT TO NUMERIC 
+new$f.31.0.0<-as.numeric(new$f.31.0.0)
+new
+
+#TO JOIN THE VEG DATA SET
+veg<-read.table("vegQC2_04032021.txt", header=TRUE)
+veg<-as_tibble(veg)
+
+#CHANGE DATA NAME TO JOIN NEW AND VEG
+colnames(veg)[colnames(veg)== "IID"]<-"f.eid"
+data<-left_join(new, veg, by=intersect(colnames(new),colnames(veg)))
