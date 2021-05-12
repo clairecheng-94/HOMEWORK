@@ -47,5 +47,26 @@ colnames(veg)[colnames(veg)== "IID"]<-"f.eid"
 data<-left_join(new, veg, by=intersect(colnames(new),colnames(veg)))
 
 #FOR LINEAR REGRESSION 
-lm(data$f.30890.0.0~data$f.21003.0.0,data$f.31.0.0,data$f.21001.0.0,data$Consistent_Self_Reported_Vegetarian_across_all_24hr)
+model<-lm(f.30890.0.0~
+f.31.0.0 +
+f.21001.0.0 +
+f.21003.0.0+
+Self_Reported_Vegetarian_plus_strict_initial_and24,
+data=data)
+> summary(model)
 
+#FOR SEX STRATIFIED
+
+x<-data[data$f.31.0.0==0,]
+female1<-lm(f.30890.0.0~
++ f.31.0.0+
++ f.21001.0.0+
++ f.21003.0.0+
++ Consistent_Self_Reported_Vegetarian_across_all_24hr,
++ data=x)
+
+#Fx<-ggplot(data, mapping=aes(x=Self_Reported_Vegetarian_plus_strict_initial_and24, y=f.30890.0.0))+
+geom_boxplot()+
+labs(x = "Last meat consumption in 24hrs",
+y="Vitamin D (nmol/L)",
+title="Self Reported Vegetarians vs Vitam 
